@@ -344,3 +344,37 @@ GET /ws/rest/v1/appointmentService/load?uuid=99b2ea38-e041-41eb-9ed2-25a26506876
 | `uuid`    | `string` | appointment service uuid |
 | `startDate`    | `date` | Date to start filtering |
 | `endDate`    | `date` | Date to stop filtering |
+
+12. Get appointment service types by service uuid
+
+Retrieves appointment service Types by service uuid
+
+```http request
+GET /ws/rest/v1/appointmentServiceTypes?uuid=some-service-uuid
+```
+
+| Parameter | Type     | Description              |
+| :-------- | :------- | :----------------------- |
+| `uuid`    | `string` | appointment service uuid |
+
+response
+
+```json
+[
+    {
+        "duration": "20",
+        "name": "ENO",
+        "uuid": "2f68c598-357a-430f-9aeb-b47063017a55"
+    },
+    {
+        "duration": "20",
+        "name": "SALT",
+        "uuid": "01d80e68-9f9b-481c-b1e5-591700df4f14"
+    },
+    {
+        "duration": "20",
+        "name": "ACTAL",
+        "uuid": "760bb6ad-e3be-464f-ab7b-29a15ce7f54a"
+    }
+]
+```

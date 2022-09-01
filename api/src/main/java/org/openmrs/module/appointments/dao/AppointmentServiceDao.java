@@ -17,4 +17,6 @@ public interface AppointmentServiceDao {
     AppointmentServiceDefinition getNonVoidedAppointmentServiceByName(String serviceName);
 
     AppointmentServiceType getAppointmentServiceTypeByUuid(String uuid);
+
+    List<AppointmentServiceType> getServiceTypesByServiceUuid(String uuid);
 }

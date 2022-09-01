@@ -69,4 +69,12 @@ public class AppointmentServiceDaoImpl implements AppointmentServiceDao{
             currentSession.evict(appointmentServiceDefinition);
         }
     }
+
+    @Override
+    public List<AppointmentServiceType> getServiceTypesByServiceUuid(String uuid) {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(AppointmentServiceType.class);
+        criteria.createAlias("appointmentServiceDefinition", "appointment_service");
+        criteria.add(Restrictions.eq("appointment_service.uuid", uuid));
+        return criteria.list();
+    }
 }
