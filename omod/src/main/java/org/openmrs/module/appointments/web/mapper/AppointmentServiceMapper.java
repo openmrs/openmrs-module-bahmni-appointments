@@ -128,6 +128,18 @@ public class AppointmentServiceMapper {
         return appointmentServiceDefinitions.stream().map(as -> this.mapToDefaultResponse(as, new AppointmentServiceDefaultResponse())).collect(Collectors.toList());
     }
 
+    public List<Map<String, String>> constructResponseForServiceTypeList(List<AppointmentServiceType> serviceTypes) {
+        List<Map<String, String>> types = new ArrayList<>();
+        for (AppointmentServiceType serviceType : serviceTypes) {
+            Map<String, String> serviceTypeMap = new HashMap<String, String>();
+            serviceTypeMap.put("name", serviceType.getName());
+            serviceTypeMap.put("duration",String.valueOf(serviceType.getDuration()));
+            serviceTypeMap.put("uuid", serviceType.getUuid());
+            types.add(serviceTypeMap);
+        }
+        return types;
+    }
+
     private Map constructServiceTypeResponse(AppointmentServiceType serviceType) {
         Map serviceTypeMap = new HashMap();
         serviceTypeMap.put("name", serviceType.getName());

@@ -10,6 +10,7 @@ import org.openmrs.api.context.Context;
 import org.openmrs.module.appointments.conflicts.AppointmentConflict;
 import org.openmrs.module.appointments.dao.AppointmentAuditDao;
 import org.openmrs.module.appointments.dao.AppointmentDao;
+import org.openmrs.module.appointments.dao.AppointmentServiceDao;
 import org.openmrs.module.appointments.helper.AppointmentServiceHelper;
 import org.openmrs.module.appointments.model.Appointment;
 import org.openmrs.module.appointments.model.AppointmentAudit;
@@ -51,6 +52,7 @@ public class AppointmentsServiceImpl implements AppointmentsService {
     private static final String PRIVILEGES_EXCEPTION_CODE = "error.privilegesRequired";
     private Log log = LogFactory.getLog(this.getClass());
     private AppointmentDao appointmentDao;
+    private AppointmentServiceDao appointmentServiceDao;
 
     private List<AppointmentStatusChangeValidator> statusChangeValidators;
 
@@ -70,6 +72,10 @@ public class AppointmentsServiceImpl implements AppointmentsService {
 
     public void setAppointmentDao(AppointmentDao appointmentDao) {
         this.appointmentDao = appointmentDao;
+    }
+
+    public void setAppointmentServiceDao(AppointmentServiceDao appointmentServiceDao) {
+        this.appointmentServiceDao = appointmentServiceDao;
     }
 
     public void setStatusChangeValidators(List<AppointmentStatusChangeValidator> statusChangeValidators) {

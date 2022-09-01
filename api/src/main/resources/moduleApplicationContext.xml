@@ -128,6 +128,25 @@
         </property>
     </bean>
 
+    <bean id="appointmentsServiceTypeService" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager">
+            <ref bean="transactionManager"/>
+        </property>
+        <property name="target">
+            <bean class="org.openmrs.module.appointments.service.impl.AppointmentsServiceTypeServiceImpl">
+                <property name="appointmentServiceDao">
+                    <ref bean="appointmentServiceDao"/>
+                </property>
+            </bean>
+        </property>
+        <property name="preInterceptors">
+            <ref bean="serviceInterceptors"/>
+        </property>
+        <property name="transactionAttributeSource">
+            <ref bean="transactionAttributeSource"/>
+        </property>
+    </bean>
+
 
     <bean id="recurringAppointmentService"
           class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
@@ -193,6 +212,15 @@
             <list merge="true">
                 <value>org.openmrs.module.appointments.service.AppointmentsService</value>
                 <ref bean="appointmentsService"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean parent="serviceContext">
+        <property name="moduleService">
+            <list merge="true">
+                <value>org.openmrs.module.appointments.service.AppointmentsServiceTypeService</value>
+                <ref bean="appointmentsServiceTypeService"/>
             </list>
         </property>
     </bean>
