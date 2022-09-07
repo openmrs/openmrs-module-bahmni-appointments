@@ -5,6 +5,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.Location;
 import org.openmrs.Patient;
+import org.openmrs.PersonAttribute;
 import org.openmrs.Provider;
 import org.openmrs.api.LocationService;
 import org.openmrs.api.PatientService;
@@ -269,6 +270,16 @@ public class AppointmentMapper {
     private Map createPatientMap(Patient p) {
         Map map = new HashMap();
         map.put("name", p.getPersonName().getFullName());
+        map.put("gender", p.getGender());
+        PersonAttribute patientPhoneAttribute = p.getPerson().getAttribute("Telephone contact");
+        if (patientPhoneAttribute != null) {
+            String phone = patientPhoneAttribute.getValue();
+            map.put("phone", phone);
+        } else {
+            map.put("phone", "");
+        }
+        map.put("dob", p.getBirthdate());
+        map.put("age", p.getAge());
         map.put("uuid", p.getUuid());
         map.put("identifier", p.getPatientIdentifier().getIdentifier());
         return map;
